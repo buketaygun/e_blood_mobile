@@ -1,0 +1,25 @@
+dependencies: \
+  /Users/admin/e_blood/macos/Pods/FirebaseFirestore/Firestore/core/src/core/filter.cc \
+  /Users/admin/e_blood/macos/Pods/FirebaseFirestore/Firestore/core/src/core/filter.h \
+  /Users/admin/e_blood/macos/Pods/FirebaseFirestore/Firestore/core/src/model/model_fwd.h \
+  /Users/admin/e_blood/macos/Pods/FirebaseFirestore/Firestore/Protos/nanopb/google/firestore/v1/document.nanopb.h \
+  /Users/admin/e_blood/macos/Pods/nanopb/pb.h \
+  /Users/admin/e_blood/macos/Pods/FirebaseFirestore/Firestore/Protos/nanopb/google/protobuf/struct.nanopb.h \
+  /Users/admin/e_blood/macos/Pods/FirebaseFirestore/Firestore/Protos/nanopb/google/protobuf/timestamp.nanopb.h \
+  /Users/admin/e_blood/macos/Pods/FirebaseFirestore/Firestore/Protos/nanopb/google/type/latlng.nanopb.h \
+  /Users/admin/e_blood/build/macos/Build/Products/Debug/abseil/absl.framework/Headers/types/optional.h \
+  /Users/admin/e_blood/build/macos/Build/Products/Debug/abseil/absl.framework/Headers/base/config.h \
+  /Users/admin/e_blood/build/macos/Build/Products/Debug/abseil/absl.framework/Headers/base/options.h \
+  /Users/admin/e_blood/build/macos/Build/Products/Debug/abseil/absl.framework/Headers/base/policy_checks.h \
+  /Users/admin/e_blood/build/macos/Build/Products/Debug/abseil/absl.framework/Headers/utility/utility.h \
+  /Users/admin/e_blood/build/macos/Build/Products/Debug/abseil/absl.framework/Headers/base/internal/inline_variable.h \
+  /Users/admin/e_blood/build/macos/Build/Products/Debug/abseil/absl.framework/Headers/base/internal/identity.h \
+  /Users/admin/e_blood/build/macos/Build/Products/Debug/abseil/absl.framework/Headers/base/internal/invoke.h \
+  /Users/admin/e_blood/build/macos/Build/Products/Debug/abseil/absl.framework/Headers/meta/type_traits.h \
+  /Users/admin/e_blood/build/macos/Build/Products/Debug/abseil/absl.framework/Headers/base/attributes.h \
+  /Users/admin/e_blood/build/macos/Build/Products/Debug/abseil/absl.framework/Headers/types/bad_optional_access.h \
+  /Users/admin/e_blood/build/macos/Build/Products/Debug/abseil/absl.framework/Headers/types/internal/optional.h \
+  /Users/admin/e_blood/build/macos/Build/Products/Debug/abseil/absl.framework/Headers/memory/memory.h \
+  /Users/admin/e_blood/build/macos/Build/Products/Debug/abseil/absl.framework/Headers/base/macros.h \
+  /Users/admin/e_blood/build/macos/Build/Products/Debug/abseil/absl.framework/Headers/base/optimization.h \
+  /Users/admin/e_blood/build/macos/Build/Products/Debug/abseil/absl.framework/Headers/base/port.h

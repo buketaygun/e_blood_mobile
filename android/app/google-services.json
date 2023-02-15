@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "599603550613",
+    "project_id": "e-blood-c2ab6",
+    "storage_bucket": "e-blood-c2ab6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:599603550613:android:762d4b37a98a735f1a3e9c",
+        "android_client_info": {
+          "package_name": "com.example.e_blood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "599603550613-ooajcl480f4pib47f43rvcp0ium7ecer.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGQwO-FHEGgE5G_rUeEvfq8R4mMbtft7k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "599603550613-ooajcl480f4pib47f43rvcp0ium7ecer.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

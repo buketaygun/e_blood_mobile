@@ -1,0 +1,18 @@
+version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
+options: "c27b2447dd940420670ca9bf5744b90808c05160d5be6dc856eb0e9bf8ffa58b"
+build_start_time: [1675327075, 247288942]
+build_end_time: [1675327075, 297710895]
+inputs:
+  "/Users/admin/e_blood/macos/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/Heartbeat.swift": !private [1675326993, 251802921]
+  "/Users/admin/e_blood/macos/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/HeartbeatController.swift": !private [1675326993, 254183292]
+  "/Users/admin/e_blood/macos/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/HeartbeatStorage.swift": !private [1675326993, 255830526]
+  "/Users/admin/e_blood/macos/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/HeartbeatsBundle.swift": !private [1675326993, 256426811]
+  "/Users/admin/e_blood/macos/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/HeartbeatsPayload.swift": !private [1675326993, 257732391]
+  "/Users/admin/e_blood/macos/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/RingBuffer.swift": !private [1675326993, 252585887]
+  "/Users/admin/e_blood/macos/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/Storage.swift": !private [1675326993, 250964164]
+  "/Users/admin/e_blood/macos/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/StorageFactory.swift": !private [1675326993, 258381128]
+  "/Users/admin/e_blood/macos/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/WeakContainer.swift": !private [1675326993, 257088422]
+  ? "/Users/admin/e_blood/macos/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/_ObjC_HeartbeatController.swift"
+  : !private [1675326993, 253376007]
+  ? "/Users/admin/e_blood/macos/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/_ObjC_HeartbeatsPayload.swift"
+  : !private [1675326993, 255167245]

@@ -1,0 +1,37 @@
+dependencies: \
+  /Users/admin/e_blood/macos/Pods/BoringSSL-GRPC/src/crypto/fipsmodule/self_check/self_check.c \
+  /Users/admin/e_blood/macos/Pods/Target\ Support\ Files/BoringSSL-GRPC/BoringSSL-GRPC-prefix.pch \
+  /Users/admin/e_blood/macos/Pods/BoringSSL-GRPC/src/include/openssl/crypto.h \
+  /Users/admin/e_blood/macos/Pods/BoringSSL-GRPC/src/include/openssl/base.h \
+  /Users/admin/e_blood/macos/Pods/BoringSSL-GRPC/src/include/openssl/is_boringssl.h \
+  /Users/admin/e_blood/macos/Pods/BoringSSL-GRPC/src/include/openssl/opensslconf.h \
+  /Users/admin/e_blood/macos/Pods/BoringSSL-GRPC/src/include/openssl/boringssl_prefix_symbols.h \
+  /Users/admin/e_blood/macos/Pods/BoringSSL-GRPC/src/include/openssl/sha.h \
+  /Users/admin/e_blood/macos/Pods/BoringSSL-GRPC/src/include/openssl/mem.h \
+  /Users/admin/e_blood/macos/Pods/BoringSSL-GRPC/src/include/openssl/thread.h \
+  /Users/admin/e_blood/macos/Pods/BoringSSL-GRPC/src/include/openssl/aead.h \
+  /Users/admin/e_blood/macos/Pods/BoringSSL-GRPC/src/include/openssl/aes.h \
+  /Users/admin/e_blood/macos/Pods/BoringSSL-GRPC/src/include/openssl/bn.h \
+  /Users/admin/e_blood/macos/Pods/BoringSSL-GRPC/src/include/openssl/des.h \
+  /Users/admin/e_blood/macos/Pods/BoringSSL-GRPC/src/include/openssl/dh.h \
+  /Users/admin/e_blood/macos/Pods/BoringSSL-GRPC/src/include/openssl/digest.h \
+  /Users/admin/e_blood/macos/Pods/BoringSSL-GRPC/src/include/openssl/ec.h \
+  /Users/admin/e_blood/macos/Pods/BoringSSL-GRPC/src/include/openssl/ec_key.h \
+  /Users/admin/e_blood/macos/Pods/BoringSSL-GRPC/src/include/openssl/engine.h \
+  /Users/admin/e_blood/macos/Pods/BoringSSL-GRPC/src/include/openssl/ex_data.h \
+  /Users/admin/e_blood/macos/Pods/BoringSSL-GRPC/src/include/openssl/stack.h \
+  /Users/admin/e_blood/macos/Pods/BoringSSL-GRPC/src/include/openssl/type_check.h \
+  /Users/admin/e_blood/macos/Pods/BoringSSL-GRPC/src/include/openssl/ecdsa.h \
+  /Users/admin/e_blood/macos/Pods/BoringSSL-GRPC/src/include/openssl/nid.h \
+  /Users/admin/e_blood/macos/Pods/BoringSSL-GRPC/src/include/openssl/rsa.h \
+  /Users/admin/e_blood/macos/Pods/BoringSSL-GRPC/src/crypto/fipsmodule/self_check/../../internal.h \
+  /Users/admin/e_blood/macos/Pods/BoringSSL-GRPC/src/crypto/fipsmodule/self_check/../ec/internal.h \
+  /Users/admin/e_blood/macos/Pods/BoringSSL-GRPC/src/crypto/fipsmodule/self_check/../ec/../bn/internal.h \
+  /Users/admin/e_blood/macos/Pods/BoringSSL-GRPC/src/crypto/fipsmodule/self_check/../ec/../bn/../../internal.h \
+  /Users/admin/e_blood/macos/Pods/BoringSSL-GRPC/src/crypto/fipsmodule/self_check/../ecdsa/internal.h \
+  /Users/admin/e_blood/macos/Pods/BoringSSL-GRPC/src/crypto/fipsmodule/self_check/../rand/internal.h \
+  /Users/admin/e_blood/macos/Pods/BoringSSL-GRPC/src/include/openssl/cpu.h \
+  /Users/admin/e_blood/macos/Pods/BoringSSL-GRPC/src/crypto/fipsmodule/self_check/../rand/../../internal.h \
+  /Users/admin/e_blood/macos/Pods/BoringSSL-GRPC/src/crypto/fipsmodule/self_check/../rand/../modes/internal.h \
+  /Users/admin/e_blood/macos/Pods/BoringSSL-GRPC/src/crypto/fipsmodule/self_check/../rand/../modes/../../internal.h \
+  /Users/admin/e_blood/macos/Pods/BoringSSL-GRPC/src/crypto/fipsmodule/self_check/../tls/internal.h

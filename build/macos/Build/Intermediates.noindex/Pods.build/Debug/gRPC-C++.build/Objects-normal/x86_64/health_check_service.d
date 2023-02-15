@@ -1,0 +1,6 @@
+dependencies: \
+  /Users/admin/e_blood/macos/Pods/gRPC-C++/src/cpp/server/health/health_check_service.cc \
+  /Users/admin/e_blood/macos/Pods/Target\ Support\ Files/gRPC-C++/gRPC-C++-prefix.pch \
+  /Users/admin/e_blood/macos/Pods/gRPC-C++/include/grpcpp/health_check_service_interface.h \
+  /Users/admin/e_blood/macos/Pods/gRPC-C++/include/grpcpp/support/config.h \
+  /Users/admin/e_blood/macos/Pods/gRPC-C++/include/grpcpp/impl/codegen/config.h
