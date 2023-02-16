@@ -1,8 +1,8 @@
-import 'package:e_blood/LoginPage.dart';
+
 import 'package:e_blood/SliderMenu.dart';
-import 'package:e_blood/profilePage.dart';
+
 import 'package:e_blood/verifyPhoneNumber.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
 import 'package:e_blood/showProfileInfo.dart';
 

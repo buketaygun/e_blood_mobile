@@ -50,7 +50,6 @@ class _MyHomePageState extends State<MyHomePage> {
        // title: Text(widget.title),
      // ),
       body: SingleChildScrollView(
-        //padding: EdgeInsets.all(40),
         child: Container(
           height: height,
           width: width,
@@ -85,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         onPressed: (){
                           Navigator.push(context, MaterialPageRoute(builder: (context)=> SignUpPage()));
                         },
-                        child: Text("Kaydet"),
+                        child: Text("Kayıt Ol"),
                     ),
                   ),
 
