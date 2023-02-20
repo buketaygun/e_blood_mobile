@@ -1,5 +1,4 @@
 import 'package:e_blood/ForgotPassword.dart';
-import 'package:e_blood/User.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -7,7 +6,6 @@ import 'package:e_blood/MainPage.dart';
 import 'package:e_blood/SignUpPage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-import 'SignInGoogle.dart';
 
 
 class LoginPage extends StatefulWidget {

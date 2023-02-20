@@ -2,10 +2,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_blood/profilePage.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'MainPage.dart';
 import 'SliderMenu.dart';
 
+
 class showProfileInfo extends StatefulWidget {
+  const showProfileInfo({super.key});
+
   @override
   State<showProfileInfo> createState() => _showProfileInfoState();
 }
@@ -22,292 +26,297 @@ class _showProfileInfoState extends State<showProfileInfo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[100],
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         centerTitle: true,
         title: const Text("Profil",
             style: TextStyle(
-              color: Colors.black54,
+                color: Colors.black,fontSize:15,fontWeight: FontWeight.bold
             ),
             textAlign: TextAlign.center),
         backgroundColor: Colors.white,
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: FutureBuilder<DocumentSnapshot>(
-            future: usersCollection.doc(auth.currentUser?.uid).get(),
-            builder: (ctx, streamSnapshot) {
-              if (!streamSnapshot.hasData) {
-                print("Henüz bilgilerinizi girmediniz");
-              }
-              if (streamSnapshot.connectionState == ConnectionState.done) {
-                Map<String, dynamic> data =
-                    streamSnapshot.data!.data() as Map<String, dynamic>;
+      body: Column(
+        children: [
+          const Padding(padding: EdgeInsets.symmetric(vertical: 10, horizontal: 0)),
+          Center(
+            child: Container(
+              width: 360,
+              height: 580,
+              decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10.0)), color: Colors.white ),
+              child: SingleChildScrollView(
+                child: FutureBuilder<DocumentSnapshot>(
+                  future: usersCollection.doc(auth.currentUser?.uid).get(),
+                  builder: (ctx, streamSnapshot) {
+                    if (!streamSnapshot.hasData) {
+                      print("Henüz bilgilerinizi girmediniz");
+                    }
+                    if (streamSnapshot.connectionState == ConnectionState.done) {
+                      Map<String, dynamic> data =
+                          streamSnapshot.data!.data() as Map<String, dynamic>;
 
-                canDonatedM = "${data['Can Donated']}";
+                      canDonatedM = "${data['Can Donated']}";
 
-                bool isDonated33 = isDonated(canDonatedM, isDonatedd);
+                      bool isDonated33 = isDonated(canDonatedM, isDonatedd);
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          //const Padding(padding: EdgeInsets.all(20)),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    width: 350,
+                                    height: 145,
+                                    child:Expanded(
+                                      child: SizedBox(
+                                        child: Column(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.fromLTRB(300, 0, 2, 0),
+                                              child: Transform.scale(
+                                                scale: 0.8,
+                                                child: IconButton(
+                                                    iconSize: 45.0,
+                                                    onPressed: (){
+                                                      Navigator.push(context, MaterialPageRoute(builder: (context)=> profilePage()));
+                                                    },
+                                                    icon: Image.asset("assets/images/edit profile.png"
+                                                    ),
+                                                ),
+                                              ),
+                                            ),
+                                            Expanded(
+                                              child: FutureBuilder<DocumentSnapshot>(
+                                                future:
+                                                usersCollection.doc(auth.currentUser?.uid).get(),
+                                                builder: (ctx, streamSnapshot) {
+                                                  if (!streamSnapshot.hasData) {
+                                                    print("Henüz bilgilerinizi girmediniz");
+                                                  }
+                                                  if (streamSnapshot.connectionState ==
+                                                      ConnectionState.done) {
+                                                    Map<String, dynamic> data = streamSnapshot.data!
+                                                        .data() as Map<String, dynamic>;
+                                                    return Column(
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                        children: [
+                                                          Column(
+                                                            crossAxisAlignment:
+                                                            CrossAxisAlignment.center,
+                                                            mainAxisAlignment: MainAxisAlignment.center,
+                                                            children: [
+                                                              Center(
+                                                                child: CircleAvatar(
+                                                                  radius: 35,
+                                                                  backgroundColor: Colors.red[200],
+                                                                  backgroundImage: NetworkImage(
+                                                                      data['Profile Foto']),
+                                                                  child: Container(
+                                                                    decoration: BoxDecoration(
+                                                                        borderRadius:
+                                                                        BorderRadius.circular(50)),
+                                                                    width: 85,
+                                                                    height: 85,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
 
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Padding(padding: EdgeInsets.all(20)),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Center(
-                          child: CircleAvatar(
-                            radius: 45,
-                            backgroundColor: Colors.red[200],
-                            backgroundImage: NetworkImage(data['Profile Foto']),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(50)),
-                              width: 85,
-                              height: 85,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const Padding(padding: EdgeInsets.all(15)),
-                    Row(
-                      children: [
-                        SizedBox(
-                          width: 175,
-                          child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.white),
-                              onPressed: () {},
-                              child: const Text("Ad Soyad :",
-                                  style: TextStyle(
-                                      fontSize: 17, color: Colors.black54))),
-                        ),
-                        const Padding(padding: EdgeInsets.fromLTRB(2, 0, 0, 0)),
-                        SizedBox(
-                          width: 175,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.white),
-                            onPressed: () {},
-                            child: Text(
-                              " ${data['Name']} ",
-                              style: const TextStyle(
-                                  fontSize: 17, color: Colors.black54),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const Padding(padding: EdgeInsets.all(0)),
-                    Row(
-                      children: [
-                        SizedBox(
-                          width: 175,
-                          child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.white),
-                              onPressed: () {},
-                              child: const Text("Yaş :",
-                                  style: TextStyle(
-                                      fontSize: 17, color: Colors.black54))),
-                        ),
-                        const Padding(padding: EdgeInsets.fromLTRB(2, 0, 0, 0)),
-                        SizedBox(
-                          width: 175,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.white),
-                            onPressed: () {},
-                            child: Text(
-                              "${data['Age']} ",
-                              style: const TextStyle(
-                                  fontSize: 17, color: Colors.black54),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const Padding(padding: EdgeInsets.all(0)),
-                    Row(
-                      children: [
-                        SizedBox(
-                          width: 175,
-                          child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.white),
-                              onPressed: () {},
-                              child: const Text("Cinsiyet :",
-                                  style: TextStyle(
-                                      fontSize: 17, color: Colors.black54))),
-                        ),
-                        const Padding(padding: EdgeInsets.fromLTRB(2, 0, 0, 0)),
-                        SizedBox(
-                          width: 175,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.white),
-                            onPressed: () {},
-                            child: Text(
-                              "${data['Gender']} ",
-                              style: const TextStyle(
-                                  fontSize: 17, color: Colors.black54),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const Padding(padding: EdgeInsets.all(0)),
-                    Row(
-                      children: [
-                        SizedBox(
-                          width: 175,
-                          child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.white),
-                              onPressed: () {},
-                              child: const Text("Şehir :",
-                                  style: TextStyle(
-                                      fontSize: 17, color: Colors.black54))),
-                        ),
-                        const Padding(padding: EdgeInsets.fromLTRB(2, 0, 0, 0)),
-                        SizedBox(
-                          width: 175,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.white),
-                            onPressed: () {},
-                            child: Text(
-                              "${data['City']} ",
-                              style: const TextStyle(
-                                  fontSize: 17, color: Colors.black54),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const Padding(padding: EdgeInsets.all(0)),
-                    Row(
-                      children: [
-                        SizedBox(
-                          width: 175,
-                          child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.white),
-                              onPressed: () {},
-                              child: const Text("Kan Grubu :",
-                                  style: TextStyle(
-                                      fontSize: 17, color: Colors.black54))),
-                        ),
-                        const Padding(padding: EdgeInsets.fromLTRB(2, 0, 0, 0)),
-                        SizedBox(
-                          width: 175,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.white),
-                            onPressed: () {},
-                            child: Text(
-                              "${data['Blood Type']} ",
-                              style: const TextStyle(
-                                  fontSize: 17, color: Colors.black54),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const Padding(padding: EdgeInsets.all(3)),
-                    Row(
-                      children: [
-                        SizedBox(
-                          width: 175,
-                          child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.white),
-                              onPressed: () {},
-                              child: const Text(
-                                  "En son kaç ay \nönce kan verdiniz ? :",
-                                  style: TextStyle(
-                                      fontSize: 17, color: Colors.black54))),
-                        ),
-                        const Padding(padding: EdgeInsets.fromLTRB(2, 0, 0, 0)),
-                        SizedBox(
-                          width: 175,
-                          height: 60,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.white),
-                            onPressed: () {},
-                            child: Text(
-                              "${data['Time']} ",
-                              style: const TextStyle(
-                                  fontSize: 17, color: Colors.black54),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const Padding(padding: EdgeInsets.all(6)),
-                    Row(
-                      children: [
-                        SizedBox(
-                          width: 175,
-                          height: 48.5,
-                          child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.white),
-                              onPressed: () {},
-                              child: const Text("Kan verebilir  mi ? :",
-                                  style: TextStyle(
-                                      fontSize: 17, color: Colors.black54))),
-                        ),
-                        const Padding(padding: EdgeInsets.fromLTRB(2, 0, 0, 0)),
-                        SizedBox(
-                          width: 175,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.white),
-                            onPressed: () {},
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: isDonated33
-                                  ? const Icon(
-                                      Icons.check_box,
-                                      color: Colors.green,
-                                    )
-                                  : const Icon(
-                                      Icons.check_box,
-                                      color: Colors.grey,
+                                                        ]);
+                                                  }
+                                                  return const Text('Yükleniyor');
+                                                },
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
                                     ),
-                            ),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
-                        ),
-                      ],
-                    ),
-                    const Padding(padding: EdgeInsets.all(10)),
-                    SizedBox(
-                      width: 385.0,
-                      height: 60.0,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.green),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => profilePage()));
-                        },
-                        child: const Text("Profil bilgilerini değiştir"),
-                      ),
-                    ),
-                  ],
-                );
-              }
-              return const Text('Yükleniyor');
-            },
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(Radius.circular(5.0)), color: Colors.grey[100] ,
+                                ),
+                                width: 344,
+                                height: 47,
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text("  "+
+                                      " ${data['Name']} ",
+                                      style: const TextStyle(
+                                          fontSize: 16, color: Colors.black),
+                                    ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const Padding(padding: EdgeInsets.all(0)),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Padding(padding: EdgeInsets.symmetric(vertical: 35,horizontal: 0)),
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(Radius.circular(5.0)), color: Colors.grey[100] ,
+                                ),
+                                width: 344,
+                                height: 47,
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text("   "+
+                                      "${data['Age']} ",
+                                      style: const TextStyle(
+                                          fontSize: 16, color: Colors.black),
+                                    ),
+                                  ),
+
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Padding(padding: EdgeInsets.symmetric(vertical: 25,horizontal: 0)),
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(Radius.circular(5.0)), color: Colors.grey[100] ,
+                                ),
+                                width: 344,
+                                height: 47,
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text("  "+
+                                      "${data['Gender']} ",
+                                      style: const TextStyle(
+                                          fontSize: 16, color: Colors.black),
+                                    ),
+                                  ),
+
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Padding(padding: EdgeInsets.symmetric(vertical: 35,horizontal: 0)),
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(Radius.circular(5.0)), color: Colors.grey[100] ,
+                                ),
+                                width: 344,
+                                height: 47,
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text("  "+
+                                      "${data['City']} ",
+                                      style: const TextStyle(
+                                          fontSize: 16, color: Colors.black),
+                                    ),
+                                  ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Padding(padding: EdgeInsets.symmetric(vertical: 25,horizontal: 0)),
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(Radius.circular(5.0)), color: Colors.grey[100] ,
+                                ),
+                                width: 344,
+                                height: 47,
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text("  "+
+                                      "${data['Blood Type']} ",
+                                      style: const TextStyle(
+                                          fontSize: 16, color: Colors.black),
+                                    ),
+                                  ),
+
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Padding(padding: EdgeInsets.symmetric(vertical: 35,horizontal: 0)),
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(Radius.circular(5.0)), color: Colors.grey[100] ,
+                                ),
+                                width: 344,
+                                height: 47,
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text("  "+
+                                      "${data['Phone Number']} ",
+                                      style: const TextStyle(
+                                          fontSize: 16, color: Colors.black),
+                                    ),
+                                  ),
+
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(Radius.circular(5.0)), color: Colors.grey[100] ,
+                                ),
+                                width: 344,
+                                height: 47,
+                                child: Directionality(
+                                  textDirection: TextDirection.rtl,
+                                  child: Row(
+                                    children: [
+                                      IconButton(
+                                          onPressed: () {},
+                                          icon: isDonated33
+                                              ? const Icon(
+                                                  Icons.check_box,
+                                                  color: Colors.green,
+                                                )
+                                              : const Icon(
+                                                  Icons.check_box,
+                                                  color: Colors.grey,
+                                                ),
+                                        ),
+                                      Padding(padding: EdgeInsets.fromLTRB(200, 0, 0, 0)),
+                                      Text("Kan verebilir", style: TextStyle(fontSize: 16, color: Colors.black),),
+                                    ],
+                                  ),
+                              ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      );
+                    }
+                    return const Text('Yükleniyor');
+                  },
+                ),
+              ),
+            ),
           ),
-        ),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
@@ -379,6 +388,7 @@ class _mainProfileState extends State<mainProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[100],
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         centerTitle: true,
@@ -397,7 +407,10 @@ class _mainProfileState extends State<mainProfile> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(
+                Container(
+                  decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(5.0)),
+    ),
                   width: 350,
                   height: 170,
                   child:Expanded(
@@ -452,7 +465,7 @@ class _mainProfileState extends State<mainProfile> {
                                                 children: [
                                                   Center(
                                                     child: CircleAvatar(
-                                                      radius: 37,
+                                                      radius: 35,
                                                       backgroundColor: Colors.red[200],
                                                       backgroundImage: NetworkImage(
                                                           data['Profile Foto']),
@@ -499,7 +512,7 @@ class _mainProfileState extends State<mainProfile> {
             ),
             const Padding(padding: EdgeInsets.fromLTRB(0, 25, 0, 0)),
             SizedBox(
-              width: 350,
+              width: 390,
               height: 50,
               child: ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
@@ -529,7 +542,7 @@ class _mainProfileState extends State<mainProfile> {
             const Padding(
                 padding: EdgeInsets.symmetric(vertical: 1, horizontal: 0)),
             SizedBox(
-              width: 350,
+              width: 390,
               height: 50,
               child: ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
@@ -553,7 +566,7 @@ class _mainProfileState extends State<mainProfile> {
             const Padding(
                 padding: EdgeInsets.symmetric(vertical: 1, horizontal: 0)),
             SizedBox(
-              width: 350,
+              width: 390,
               height: 50,
               child: ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
@@ -577,7 +590,7 @@ class _mainProfileState extends State<mainProfile> {
             const Padding(
                 padding: EdgeInsets.symmetric(vertical: 1, horizontal: 0)),
             SizedBox(
-              width: 350,
+              width: 390,
               height: 50,
               child: ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
@@ -601,7 +614,7 @@ class _mainProfileState extends State<mainProfile> {
             const Padding(
                 padding: EdgeInsets.symmetric(vertical: 1, horizontal: 0)),
             SizedBox(
-              width: 350,
+              width: 390,
               height: 50,
               child: ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
@@ -677,7 +690,9 @@ class _mainProfileState extends State<mainProfile> {
                           style: TextStyle(color: Colors.black))),
                   style:
                       ElevatedButton.styleFrom(backgroundColor: Colors.white),
-                  onPressed: () {},
+                  onPressed: () {
+                    signOut();
+                  },
                   icon: const IconTheme(
                     data: IconThemeData(
                       color: Colors.black,
@@ -737,4 +752,14 @@ class _mainProfileState extends State<mainProfile> {
       ),
     );
   }
+
+  signOut() async{
+    var _user=GoogleSignIn().currentUser;
+    if(_user!=null){
+      await GoogleSignIn().disconnect();}
+    await auth.signOut();
+
+  }
+
+
 }

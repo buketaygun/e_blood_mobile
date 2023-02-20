@@ -8,19 +8,20 @@ import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
-
 import 'SliderMenu.dart';
 
 class profilePage extends StatefulWidget {
+  const profilePage({super.key});
+
   @override
   State<profilePage> createState() => _profilePageState();
 }
 
 class _profilePageState extends State<profilePage> {
-  String name="";
+  String name = "";
   late String gender, age, bloodType;
-  String city="";
-  String mobilePhone="";
+  String city = "";
+  String mobilePhone = "";
   late int lastGivenTime;
   bool showState = false;
   var listGender = ['kadın', 'erkek'];
@@ -154,65 +155,74 @@ class _profilePageState extends State<profilePage> {
         builder: (BuildContext bc) {
           return SafeArea(
               child: Container(
-            child: new Wrap(
-              children: <Widget>[
-                new ListTile(
-                  leading: new Icon(Icons.photo_library),
-                  title: new Text('Galeri'),
-                  onTap: () {
-                    imgFromGallery();
-                    Navigator.of(context).pop();
-                  },
+                child: new Wrap(
+                  children: <Widget>[
+                    new ListTile(
+                      leading: new Icon(Icons.photo_library),
+                      title: new Text('Galeri'),
+                      onTap: () {
+                        imgFromGallery();
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                    new ListTile(
+                      leading: new Icon(Icons.photo_camera),
+                      title: new Text('Kamera'),
+                      onTap: () {
+                        imgFromCam();
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ],
                 ),
-                new ListTile(
-                  leading: new Icon(Icons.photo_camera),
-                  title: new Text('Kamera'),
-                  onTap: () {
-                    imgFromCam();
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ],
-            ),
-          ));
+              ));
         });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text("Profil",
-            style: TextStyle(
-              color: Colors.black54,
-            ),
-            textAlign: TextAlign.center),
-        backgroundColor: Colors.white,
-      ),
-      body: SingleChildScrollView(
-        child: Column(
+      backgroundColor: Colors.grey[100],
+        resizeToAvoidBottomInset: false,
+        appBar: AppBar(
+          centerTitle: true,
+          title: const Text("Profil",
+              style: TextStyle(
+                color: Colors.black,fontSize:15,fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center),
+          backgroundColor: Colors.white,
+        ),
+        body: Column(
           children: [
-            Padding(padding: EdgeInsets.all(12)),
-            GestureDetector(
-              onTap: () {
-                showPicker(context);
-              },
-              child: CircleAvatar(
-                radius: 45,
-                backgroundColor: Colors.red[200],
-                child: _photo != null
-                    ? ClipRRect(
-                        borderRadius: BorderRadius.circular(40),
-                        child: Image.file(
-                          _photo!,
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.fitHeight,
-                        ),
-                      )
-                    : Container(
+            const Padding(padding: EdgeInsets.symmetric(vertical: 10, horizontal: 0)),
+            Center(
+              child: Container(
+                width: 360,
+                height: 515,
+                decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(15.0)), color: Colors.white ),
+                child: SingleChildScrollView(
+                    child: Column(
+                        children: [
+                    Padding(padding: EdgeInsets.all(9)),
+                GestureDetector(
+                  onTap: () {
+                    showPicker(context);
+                  },
+                  child: CircleAvatar(
+                    radius: 35,
+                    backgroundColor: Colors.red[200],
+                    child: _photo != null
+                        ? ClipRRect(
+                      borderRadius: BorderRadius.circular(40),
+                      child: Image.file(
+                        _photo!,
+                        width: 100,
+                        height: 100,
+                        fit: BoxFit.fitHeight,
+                      ),
+                    )
+                        : Container(
                         decoration: BoxDecoration(
                             color: Colors.grey[200],
                             borderRadius: BorderRadius.circular(50)),
@@ -222,278 +232,266 @@ class _profilePageState extends State<profilePage> {
                           Icons.camera_alt,
                           color: Colors.red,
                         )),
-              ),
-            ),
-            Padding(padding: EdgeInsets.all(10)),
-            Container(
-              width: 385.0,
-              child: TextField(
-                onChanged: (value) {
-                  name = value;
-                },
-                decoration: InputDecoration(
-                  labelText: 'Ad-Soyad',
-                  border: OutlineInputBorder(),
-                ),
-              ),
-            ),
-            Padding(padding: EdgeInsets.all(5)),
-            Container(
-              width: 385.0,
-              child: TextField(
-                onChanged: (value) {
-                  city = value;
-                },
-                decoration: InputDecoration(
-                  labelText: 'Nerede Yaşıyorsunuz ?',
-                  border: OutlineInputBorder(),
-                ),
-              ),
-            ),
-            Padding(padding: EdgeInsets.all(5)),
-            Container(
-              width: 385.0,
-              child: TextField(
-                keyboardType: TextInputType.number,
-                onChanged: (value) {
-                  mobilePhone = value;
-                },
-                decoration: InputDecoration(
-                  labelText: 'Telefon Numarası ?',
-                  border: OutlineInputBorder(),
-                ),
-              ),
-            ),
-            Padding(padding: EdgeInsets.all(5)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Padding(padding: EdgeInsets.fromLTRB(5, 0, 0, 0)),
-                Container(
-                  width: 200,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
-                    onPressed: (){},
-                    child: Text(
-                      '   Cinsiyetinizi Seçiniz',
-                      style: TextStyle(fontSize: 15.0, color: Colors.black54),
-                    ),
                   ),
                 ),
-                Padding(padding: EdgeInsets.fromLTRB(108, 5, 0, 5)),
-                DropdownButton(
-                    value: dropdownvalGender,
-                    icon: const Icon(Icons.keyboard_arrow_down),
-                    items: listGender.map(
-                      (String list) {
-                        return DropdownMenuItem(
-                          value: list,
-                          child: Text(list),
-                        );
-                      },
-                    ).toList(),
-                    onChanged: (String? val) {
-                      setState(() {
-                        dropdownvalGender = val!;
-                      });
-                    }),
-              ],
-            ),
-            Padding(padding: EdgeInsets.all(3)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Padding(padding: EdgeInsets.fromLTRB(5, 0, 0, 0)),
+                Padding(padding: EdgeInsets.all(12)),
                 Container(
-                  width: 200,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
-                    onPressed: (){},
-                    child: Text(
-                      '   Yaşınızı Seçiniz',
-                      style: TextStyle(fontSize: 15.0, color: Colors.black54),
-                    ),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(5.0)), color: Colors.grey[100] ,
                   ),
-                ),
-                Padding(padding: EdgeInsets.fromLTRB(128, 5, 0, 5)),
-                DropdownButton(
-                    value: dropdownValAge,
-                    icon: const Icon(Icons.keyboard_arrow_down),
-                    items: listAge.map((String list) {
-                      return DropdownMenuItem(
-                        value: list,
-                        child: Text(list),
-                      );
-                    }).toList(),
-                    onChanged: (String? val) {
-                      setState(() {
-                        dropdownValAge = val!;
-                      });
-                    }),
-              ],
-            ),
-            Padding(padding: EdgeInsets.all(3)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Padding(padding: EdgeInsets.fromLTRB(5, 0, 0, 0)),
-                Container(
-                  width: 200,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
-                    onPressed: (){},
-                    child: Text(
-                      '   Kan grubunuzu seçiniz',
-                      style: TextStyle(fontSize: 15.0, color: Colors.black54),
-                    ),
-                  ),
-                ),
-                Padding(padding: EdgeInsets.fromLTRB(116, 5, 0, 5)),
-                DropdownButton(
-                    value: drowdownValBlood,
-                    icon: const Icon(
-                      Icons.keyboard_arrow_down,
-                    ),
-                    items: listBloodType.map((String list) {
-                      return DropdownMenuItem(
-                        value: list,
-                        child: Text(list),
-                      );
-                    }).toList(),
-                    onChanged: (String? val) {
-                      setState(() {
-                        drowdownValBlood = val!;
-                      });
-                    }),
-              ],
-            ),
-            Padding(padding: EdgeInsets.all(3)),
-            Row(
-              children: [
-                Padding(padding: EdgeInsets.fromLTRB(5, 0, 0, 0)),
-                Container(
-                  width: 200,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
-                    onPressed: (){},
-                    child: Text(
-                      '   En son kaç ay önce kan \n   bağışı yaptınız ?',
-                      style: TextStyle(fontSize: 15.0, color: Colors.black54),
-                    ),
-                  ),
-                ),
-                Padding(padding: EdgeInsets.fromLTRB(117, 5, 0, 5)),
-                DropdownButton(
-                    value: dropDownValMonths,
-                    icon: const Icon(Icons.keyboard_arrow_down),
-                    items: months.map((String list) {
-                      return DropdownMenuItem(
-                        value: list,
-                        child: Text(list),
-                      );
-                    }).toList(),
-                    onChanged: (String? val) {
-                      setState(() {
-                        dropDownValMonths = val!;
-                      });
-                    }),
-              ],
-            ),
-            Padding(padding: EdgeInsets.all(3)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: 185.5,
-                  height: 60.0,
-                  child: TextButton(
-                    style:
-                        ElevatedButton.styleFrom(backgroundColor: Colors.green),
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => CanDonatedPage()));
+                  width: 344,
+                  height: 47,
+                  child: TextField(
+                    onChanged: (value) {
+                      name = value;
                     },
-                    child: Text(
-                      "Kan bağışı yapabilir miyim ?",
-                      style: TextStyle(color: Colors.white, fontSize: 14,),
+                    decoration: InputDecoration(
+                      labelText: '   Ad-Soyad',
+                      border: InputBorder.none,
                     ),
                   ),
                 ),
-                Padding(padding: EdgeInsets.all(3)),
+                Padding(padding: EdgeInsets.all(5)),
                 Container(
-                  width: 185.5,
-                  height: 60.0,
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.green),
-                      onPressed: () {
-                        FirebaseFirestore.instance
-                            .collection('User')
-                            .doc(auth.currentUser?.uid)
-                            .update({
-                          "Name": name,
-                          "Gender": dropdownvalGender,
-                          "Age": dropdownValAge,
-                          "Blood Type": drowdownValBlood,
-                          "Time": dropDownValMonths,
-                          "City": city,
-                          'Phone Number': mobilePhone
-                        });
-                        Navigator.of(context).pop();
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(5.0)), color: Colors.grey[100] ,
+                  ),
+                  width: 344,
+                  height: 47,
+                    child: TextField(
+                      onChanged: (value) {
+                        city = value;
                       },
-                      child: Text("Kaydet",
-                      style: TextStyle(fontSize: 14)
-                        ,)),
+                      decoration: InputDecoration(
+                        labelText: '   İl ',
+                        border: InputBorder.none,
+                      ),
+                    ),
                 ),
-              ],
+                Padding(padding: EdgeInsets.all(5)),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(5.0)), color: Colors.grey[100] ,
+                  ),
+                  width: 344,
+                  height: 47,
+                  child: TextField(
+                    keyboardType: TextInputType.number,
+                    onChanged: (value) {
+                      mobilePhone = value;
+                    },
+                    decoration: InputDecoration(
+                      labelText: '   Cep Telefonu',
+                      border: InputBorder.none,
+                    ),
+                  ),
+                ),
+                Padding(padding: EdgeInsets.all(5)),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+    Container(
+      decoration: BoxDecoration(
+      borderRadius: BorderRadius.all(Radius.circular(5.0)), color: Colors.grey[100] ,),
+    width: 344,
+    height: 47,
+    child: Directionality(
+    textDirection: TextDirection.rtl,
+    child: Row(
+    children: [
+            DropdownButton(
+            value: dropdownvalGender,
+            icon: const Icon(Icons.keyboard_arrow_down),
+            items: listGender.map(
+            (String list) {
+            return DropdownMenuItem(
+            value: list,
+            child: Text("          "+list +"     "),
+            );
+            },
+            ).toList(),
+            onChanged: (String? val) {
+            setState(() {
+            dropdownvalGender = val!;
+            });
+            }),
+    const Text("                                      Cinsiyet", style: TextStyle(color: Colors.black54, fontSize: 16, fontWeight: FontWeight.w400),textAlign:TextAlign.start,),
+    ],
+    ),
+
+    ),
+    ),
+    ],
+    ),
+    Padding(padding: EdgeInsets.all(5)),
+    Container(
+      decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(5.0)), color: Colors.grey[100] ,),
+      width: 344,
+      height: 47,
+      child: Directionality(
+            textDirection: TextDirection.rtl,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+
+            children: [
+            DropdownButton(
+            value: dropdownValAge,
+            icon: const Icon(Icons.keyboard_arrow_down),
+            items: listAge.map((String list) {
+            return DropdownMenuItem(
+            value: list,
+            child: Text("               "+list+"     "),
+            );
+            }).toList(),
+            onChanged: (String? val) {
+            setState(() {
+            dropdownValAge = val!;
+            });
+            }),
+              const Text("                                              Yaş",
+                style: TextStyle(color: Colors.black54, fontSize: 16, fontWeight: FontWeight.w400),
+              ),
+
+            ],
+    ),),
+              ),
+    Padding(padding: EdgeInsets.all(5)),
+    Container(
+      decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(5.0)), color: Colors.grey[100] ,),
+      width: 344,
+      height: 47,
+      child: Directionality(
+            textDirection: TextDirection.rtl,
+            child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+            DropdownButton(
+            value: drowdownValBlood,
+            icon: const Icon(
+            Icons.keyboard_arrow_down,
+            ),
+            items: listBloodType.map((String list) {
+            return DropdownMenuItem(
+            value: list,
+            child: Text("            "+list+"     "),
+            );
+            }).toList(),
+            onChanged: (String? val) {
+            setState(() {
+            drowdownValBlood = val!;
+            });
+            }),
+              Text(
+                '                                   Kan grubu',
+                style: TextStyle(color: Colors.black54, fontSize: 16, fontWeight: FontWeight.w400),
+              ),
+            ],
+            ),
+      ),
+    ),
+    Padding(padding: EdgeInsets.all(5)),
+    Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(5.0)), color: Colors.grey[100] ,),
+      width: 344,
+      height: 47,
+      child: Directionality(
+        textDirection: TextDirection.rtl,
+        child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ElevatedButton(
+              onPressed:(){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> CanDonatedPage()));
+              },
+              child: Text("      Sorgula     "),
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.redAccent),
+          ),
+        Text(
+        "              Kan bağışı onay formu ",
+        style: TextStyle(color: Colors.black54, fontSize: 16, fontWeight: FontWeight.w400),
+        ),
+    ],
+    ),
+      ),
+              ),
+    ],
+    ),
+    ),
+              ),
+            ),
+              Padding(padding: EdgeInsets.symmetric(vertical: 8, horizontal: 0)),
+            Container(
+              width: 344,
+              height: 47,
+              child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green[400]),
+                  onPressed: () {
+                    FirebaseFirestore.instance
+                        .collection('User')
+                        .doc(auth.currentUser?.uid)
+                        .update({
+                      "Name": name,
+                      "Gender": dropdownvalGender,
+                      "Age": dropdownValAge,
+                      "Blood Type": drowdownValBlood,
+                      "Time": dropDownValMonths,
+                      "City": city,
+                      'Phone Number': mobilePhone
+                    });
+                    Navigator.of(context).pop();
+                  },
+                  child: Text("Kaydet",
+                    style: TextStyle(fontSize: 14)
+                    ,)),
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-              label: "",
-              icon: IconButton(
-                icon: ImageIcon(
-                  AssetImage("assets/images/UI Menu.png"),
-                ),
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => SliderMenu()));
-                },
-              )),
-          BottomNavigationBarItem(
-            label: "",
-            icon: IconButton(
-              color: Colors.red.shade900,
-              icon: ImageIcon(
-                AssetImage(
-                  "assets/images/Blood Drop.png",
-                ),
-              ),
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => MainPage()));
-              },
-            ),
-          ),
-          BottomNavigationBarItem(
-              label: "",
-              icon: IconButton(
-                  icon: ImageIcon(
-                    AssetImage("assets/images/Person.png"),
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => showProfileInfo()));
-                  })),
-        ],
-      ),
+    bottomNavigationBar: BottomNavigationBar(
+    items: [
+    BottomNavigationBarItem(
+    label: "",
+    icon: IconButton(
+    icon: ImageIcon(
+    AssetImage("assets/images/UI Menu.png"),
+    ),
+    onPressed: () {
+    Navigator.push(context,
+    MaterialPageRoute(builder: (context) => SliderMenu()));
+    },
+    )),
+    BottomNavigationBarItem(
+    label: "",
+    icon: IconButton(
+    color: Colors.red.shade900,
+    icon: ImageIcon(
+    AssetImage(
+    "assets/images/Blood Drop.png",
+    ),
+    ),
+    onPressed: () {
+    Navigator.push(context,
+    MaterialPageRoute(builder: (context) => MainPage()));
+    },
+    ),
+    ),
+    BottomNavigationBarItem(
+    label: "",
+    icon: IconButton(
+    icon: ImageIcon(
+    AssetImage("assets/images/Person.png"),
+    ),
+    onPressed: () {
+    Navigator.push(
+    context,
+    MaterialPageRoute(
+    builder: (context) => showProfileInfo()));
+    })),
+    ],
+    ),
     );
-  }
+    }
 }
