@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_blood/ProfileDetails.dart';
+import 'package:e_blood/SettingsPage.dart';
 import 'package:e_blood/profilePage.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -570,7 +572,9 @@ class _mainProfileState extends State<mainProfile> {
               height: 50,
               child: ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> ProfileDetails()));
+                },
                 icon: const IconTheme(
                   data: IconThemeData(
                     color: Colors.black,
@@ -618,7 +622,9 @@ class _mainProfileState extends State<mainProfile> {
               height: 50,
               child: ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> SettingsPage()));
+                },
                 icon: const IconTheme(
                   data: IconThemeData(
                     color: Colors.black,

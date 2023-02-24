@@ -45,7 +45,7 @@ class _CanDonatedPageState extends State<CanDonatedPage> {
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Kan Bağışına Uygunluk", style: TextStyle(color: Colors.black54),),
+        title: const Text("Kan Bağışına Uygunluk", style: TextStyle(color: Colors.black54),),
         backgroundColor: Colors.white,
       ) ,
       body:Column(
@@ -55,14 +55,14 @@ class _CanDonatedPageState extends State<CanDonatedPage> {
             child: Container(
               width: 360,
               height: 450,
-              decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(15.0)), color: Colors.white ),
+              decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(15.0)), color: Colors.white ),
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    Padding(padding:EdgeInsets.all(15) ),
+                    const Padding(padding:EdgeInsets.all(15) ),
                     Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(5.0)), color: Colors.grey[100] ,),
+                        borderRadius: const BorderRadius.all(Radius.circular(5.0)), color: Colors.grey[100] ,),
                       width: 344,
                       height: 47,
                       child: Directionality(
@@ -90,10 +90,10 @@ class _CanDonatedPageState extends State<CanDonatedPage> {
                             ],),
                       ),
                     ),
-                    Padding(padding: EdgeInsets.all(7)),
+                    const Padding(padding: EdgeInsets.all(7)),
                     Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(5.0)), color: Colors.grey[100] ,),
+                        borderRadius: const BorderRadius.all(Radius.circular(5.0)), color: Colors.grey[100] ,),
                       width: 344,
                       height: 47,
                       child: Directionality(
@@ -122,10 +122,10 @@ class _CanDonatedPageState extends State<CanDonatedPage> {
                         ),
                       ),
                     ),
-                    Padding(padding: EdgeInsets.all(7)),
+                    const Padding(padding: EdgeInsets.all(7)),
                     Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(5.0)), color: Colors.grey[100] ,),
+                        borderRadius: const BorderRadius.all(Radius.circular(5.0)), color: Colors.grey[100] ,),
                       width: 344,
                       height: 47,
                       child: Directionality(
@@ -148,8 +148,8 @@ class _CanDonatedPageState extends State<CanDonatedPage> {
                                       });
                                     }
                               ),
-                            Padding(padding: EdgeInsets.fromLTRB(48, 0, 0, 0)),
-                            Text(
+                            const Padding(padding: EdgeInsets.fromLTRB(48, 0, 0, 0)),
+                            const Text(
                               ' En son kaç ay önce kan bağışı \n ?  yaptınız ',
                               style: TextStyle(fontSize: 13.0, color: Colors.black54),textAlign:TextAlign.left,
                             ),
@@ -157,10 +157,10 @@ class _CanDonatedPageState extends State<CanDonatedPage> {
                         ),
                       ),
                     ),
-                    Padding(padding: EdgeInsets.all(7)),
+                    const Padding(padding: EdgeInsets.all(7)),
                     Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(5.0)), color: Colors.grey[100] ,),
+                        borderRadius: const BorderRadius.all(Radius.circular(5.0)), color: Colors.grey[100] ,),
                       width: 344,
                       height: 47,
                       child: Directionality(
@@ -182,8 +182,8 @@ class _CanDonatedPageState extends State<CanDonatedPage> {
                                     });
                                   }
                               ),
-                            Padding(padding: EdgeInsets.fromLTRB(137, 0, 0, 0)),
-                            Text(
+                            const Padding(padding: EdgeInsets.fromLTRB(137, 0, 0, 0)),
+                            const Text(
                               'Kilonuzu seçiniz ',
                               style: TextStyle(fontSize: 13.0, color: Colors.black54),
                             ),
@@ -191,10 +191,10 @@ class _CanDonatedPageState extends State<CanDonatedPage> {
                         ),
                       ),
                     ),
-                    Padding(padding: EdgeInsets.all(7)),
+                    const Padding(padding: EdgeInsets.all(7)),
                     Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(5.0)), color: Colors.grey[100] ,),
+                        borderRadius: const BorderRadius.all(Radius.circular(5.0)), color: Colors.grey[100] ,),
                       width: 344,
                       height: 47,
                       child: Directionality(
@@ -216,8 +216,8 @@ class _CanDonatedPageState extends State<CanDonatedPage> {
                                         });
                                       }
                             ),
-                            Padding(padding: EdgeInsets.fromLTRB(55, 0, 0, 0)),
-                            Text(
+                            const Padding(padding: EdgeInsets.fromLTRB(55, 0, 0, 0)),
+                            const Text(
                               '   Son 1 yıl içinde hiç ameliyat \n   olmadım, dövme ve piercing \n   .yaptırmadım',
                               style: TextStyle(fontSize: 13.0,color: Colors.black54),textAlign:TextAlign.left,
                             ),
@@ -226,10 +226,10 @@ class _CanDonatedPageState extends State<CanDonatedPage> {
                         ),
                       ),
                     ),
-                    Padding(padding: EdgeInsets.all(7)),
+                    const Padding(padding: EdgeInsets.all(7)),
                     Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(5.0)), color: Colors.grey[100] ,),
+                        borderRadius: const BorderRadius.all(Radius.circular(5.0)), color: Colors.grey[100] ,),
                       width: 344,
                       height: 47,
                       child: Directionality(
@@ -251,8 +251,8 @@ class _CanDonatedPageState extends State<CanDonatedPage> {
                                     });
                                   }
                             ),
-                            Padding(padding: EdgeInsets.fromLTRB(90, 0, 0, 0)),
-                            Text(
+                            const Padding(padding: EdgeInsets.fromLTRB(90, 0, 0, 0)),
+                            const Text(
                               '   .Bulaşıcı hastalığım yok',
                               style: TextStyle(fontSize: 13.0, color: Colors.black54),
                             ),
@@ -266,8 +266,8 @@ class _CanDonatedPageState extends State<CanDonatedPage> {
               ),
             ),
           ),
-          Padding(padding: EdgeInsets.all(30)),
-          Container(
+          const Padding(padding: EdgeInsets.all(30)),
+          SizedBox(
             width: 344,
             height: 47,
             child: ElevatedButton(
@@ -288,7 +288,7 @@ class _CanDonatedPageState extends State<CanDonatedPage> {
           BottomNavigationBarItem(
               label: "",
               icon: IconButton(
-                icon: ImageIcon(
+                icon: const ImageIcon(
                   AssetImage(
                       "assets/images/UI Menu.png"
                   ),
@@ -305,7 +305,7 @@ class _CanDonatedPageState extends State<CanDonatedPage> {
             label: "",
             icon: IconButton(
               color: Colors.red.shade900,
-              icon:ImageIcon(
+              icon:const ImageIcon(
                 AssetImage(
                   "assets/images/Blood Drop.png",
 
@@ -322,7 +322,7 @@ class _CanDonatedPageState extends State<CanDonatedPage> {
           BottomNavigationBarItem(
               label: "",
               icon: IconButton(
-                  icon: ImageIcon(
+                  icon: const ImageIcon(
                     AssetImage("assets/images/Person.png"),
 
                   ),
@@ -330,7 +330,7 @@ class _CanDonatedPageState extends State<CanDonatedPage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => showProfileInfo()));
+                            builder: (context) => const showProfileInfo()));
                   }
               )
           ),

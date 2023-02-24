@@ -1,4 +1,3 @@
-
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -23,7 +22,8 @@ class _SignUpPageState extends State<SignUpPage> {
 
   Reference ref=FirebaseStorage.instance.ref().child("blank-profile-picture-973460_1280.webp");
 
- 
+  bool requestBlood= false;
+
 
 
   @override
@@ -125,6 +125,20 @@ class _SignUpPageState extends State<SignUpPage> {
                             FirebaseFirestore.instance.collection('User').doc(auth.currentUser?.uid).update({"Gender": "-", "Age": "-", "Time": "-", "Kg": "-" , "Stp": "-","disease": "-"});
                             FirebaseFirestore.instance.collection('User').doc(auth.currentUser?.uid).update({"Can Donated":'false'});
                             FirebaseFirestore.instance.collection('User').doc(auth.currentUser?.uid).update({'Profile Foto':'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'});
+                            FirebaseFirestore.instance.collection('User').doc(auth.currentUser?.uid).update({"Kan Arama":requestBlood});
+                           /* FirebaseFirestore.instance
+                                .collection('BloodReq')
+                                .doc("Person$authNumber")
+                                .update({
+                              "Name": "-",
+                              "Age": "-",
+                              "Blood Type": "-",
+                              "City": "-",
+                              'Phone Number': "-",
+                              "UnitAmount" : "-",
+                              "Notes": "-",
+                              "Kan Arama": requestBlood,
+                            });*/
                           });
                           Navigator.push(context, MaterialPageRoute(builder:  (context) => MainPage()));
 
