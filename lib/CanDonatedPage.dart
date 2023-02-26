@@ -36,7 +36,9 @@ class _CanDonatedPageState extends State<CanDonatedPage> {
   late String genderVal='Kadın';
   late String diseaseVal='Evet';
   late String monthsVal='Hiç';
-
+  
+  
+  int personCanDonate=2;
 
   @override
   Widget build(BuildContext context) {
@@ -273,9 +275,11 @@ class _CanDonatedPageState extends State<CanDonatedPage> {
             child: ElevatedButton(
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
                 onPressed: (){
+                  personCanDonate++;
                   FirebaseFirestore.instance.collection('User').doc(auth.currentUser?.uid).update({"Gender": genderVal, "Age": ageVal, "Time": monthsVal, "Kg": kgVal, "Stp": stpVal,"disease": diseaseVal});
                   donatedCond();
                   Navigator.of(context).pop();
+                  FirebaseFirestore.instance.collection('personCanDonated').doc("mKf65HUj513JNqaKwi0w").update({"person": personCanDonate});
 
                 },
                 child: const Text("Sorgula", style: TextStyle(color: Colors.white),)

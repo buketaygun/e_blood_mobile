@@ -6,8 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'MainPage.dart';
-import 'SliderMenu.dart';
-
+import 'SearchBlood.dart';
 
 class showProfileInfo extends StatefulWidget {
   const showProfileInfo({super.key});
@@ -326,25 +325,33 @@ class _showProfileInfoState extends State<showProfileInfo> {
               label: "",
               icon: IconButton(
                 icon: const ImageIcon(
-                  AssetImage("assets/images/UI Menu.png"),
+                  AssetImage(
+                    "assets/images/UI Menu.png",
+                  ),
                 ),
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => SliderMenu()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => MainPage()));
                 },
-              )),
+              )
+          ),
           BottomNavigationBarItem(
             label: "",
             icon: IconButton(
               color: Colors.red.shade900,
-              icon: const ImageIcon(
+              icon:const ImageIcon(
                 AssetImage(
                   "assets/images/Blood Drop.png",
+
                 ),
               ),
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => MainPage()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const SearchBlood()));
               },
             ),
           ),
@@ -353,12 +360,19 @@ class _showProfileInfoState extends State<showProfileInfo> {
               icon: IconButton(
                   icon: const ImageIcon(
                     AssetImage("assets/images/Person.png"),
+
                   ),
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => mainProfile()));
-                  })),
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => mainProfile()));
+                  }
+              )
+          ),
+
         ],
+
       ),
     );
   }
@@ -402,318 +416,324 @@ class _mainProfileState extends State<mainProfile> {
         backgroundColor: Colors.white,
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const Padding(
-                padding: EdgeInsets.symmetric(vertical: 8, horizontal: 0)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+        child: Center(
+          child: Container(
+            width: 360,
+            height: 600,
+            child: Column(
               children: [
-                Container(
-                  decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(5.0)),
-    ),
-                  width: 350,
-                  height: 170,
-                  child:Expanded(
-                    child: ElevatedButton(
-                          style:
-                              ElevatedButton.styleFrom(backgroundColor: Colors.white),
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => showProfileInfo()));
-                          },
-                            child: Column(
-                              children: [
-                                IconButton(
-                                  iconSize: 42.0,
-                                    onPressed: (){
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=> profilePage()));
-                                    },
-                                    icon: const IconTheme(
-                                      data: IconThemeData(
-                                        color: Colors.redAccent,
-                                      ),
-                                      child: Align(
-                                        alignment: Alignment(16.5,0),
-                                        child: ImageIcon(
-                                          AssetImage("assets/images/edit profile.png"),
-                                        ),
-                                      ),
-                                    )
-                                ),
-                                Expanded(
-                                  child: FutureBuilder<DocumentSnapshot>(
-                                    future:
-                                        usersCollection.doc(auth.currentUser?.uid).get(),
-                                    builder: (ctx, streamSnapshot) {
-                                      if (!streamSnapshot.hasData) {
-                                        print("Henüz bilgilerinizi girmediniz");
-                                      }
-                                      if (streamSnapshot.connectionState ==
-                                          ConnectionState.done) {
-                                        Map<String, dynamic> data = streamSnapshot.data!
-                                            .data() as Map<String, dynamic>;
-                                        return Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              const Padding(padding: EdgeInsets.all(0)),
-                                              Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                children: [
-                                                  Center(
-                                                    child: CircleAvatar(
-                                                      radius: 35,
-                                                      backgroundColor: Colors.red[200],
-                                                      backgroundImage: NetworkImage(
-                                                          data['Profile Foto']),
-                                                      child: Container(
-                                                        decoration: BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius.circular(50)),
-                                                        width: 85,
-                                                        height: 85,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              Row(
-                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                children: [
-                                                  const Padding(
-                                                      padding:
-                                                          EdgeInsets.fromLTRB(0, 0, 0, 30)),
-                                                  Text(
-                                                    " ${data['Name']} ",
-                                                    style: const TextStyle(
-                                                        fontSize: 14, color: Colors.black),
-                                                  ),
-                                                  const Padding(
-                                                      padding: EdgeInsets.all(15)),
-                                                ],
-                                              ),
-                                            ]);
-                                      }
-                                      return const Text('Yükleniyor');
-                                    },
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                  ),
-                      ),
-              ],
-            ),
-            const Padding(padding: EdgeInsets.fromLTRB(0, 25, 0, 0)),
-            SizedBox(
-              width: 390,
-              height: 50,
-              child: ElevatedButton.icon(
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
-                onPressed: () {},
-                icon: const IconTheme(
-                  data: IconThemeData(
-                    color: Colors.black,
-                  ),
-                  child: ImageIcon(
-                    AssetImage(
-                      "assets/images/Blood Bag.png",
-                    ),
-                  ),
-                ),
-                label: const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'Bağışlarım',
-                    style: TextStyle(
-                      color: Colors.black54,
-                      fontSize: 13,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            const Padding(
-                padding: EdgeInsets.symmetric(vertical: 1, horizontal: 0)),
-            SizedBox(
-              width: 390,
-              height: 50,
-              child: ElevatedButton.icon(
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
-                onPressed: () {},
-                icon: const IconTheme(
-                  data: IconThemeData(
-                    color: Colors.black,
-                  ),
-                  child: ImageIcon(
-                    AssetImage("assets/images/Megaphone.png"),
-                  ),
-                ),
-                label: const Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Bildirim Ayarları',
-                      style: TextStyle(color: Colors.black54, fontSize: 13),
-                    )),
-              ),
-            ),
-            const Padding(
-                padding: EdgeInsets.symmetric(vertical: 1, horizontal: 0)),
-            SizedBox(
-              width: 390,
-              height: 50,
-              child: ElevatedButton.icon(
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> ProfileDetails()));
-                },
-                icon: const IconTheme(
-                  data: IconThemeData(
-                    color: Colors.black,
-                  ),
-                  child: ImageIcon(
-                    AssetImage("assets/images/Group 74.png"),
-                  ),
-                ),
-                label: const Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Kan Bağışı Nedir?',
-                      style: TextStyle(color: Colors.black54, fontSize: 13),
-                    )),
-              ),
-            ),
-            const Padding(
-                padding: EdgeInsets.symmetric(vertical: 1, horizontal: 0)),
-            SizedBox(
-              width: 390,
-              height: 50,
-              child: ElevatedButton.icon(
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
-                onPressed: () {},
-                icon: const IconTheme(
-                  data: IconThemeData(
-                    color: Colors.black,
-                  ),
-                  child: ImageIcon(
-                    AssetImage("assets/images/Chat.png"),
-                  ),
-                ),
-                label: const Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Bize Ulaşın',
-                      style: TextStyle(color: Colors.black54, fontSize: 13),
-                    )),
-              ),
-            ),
-            const Padding(
-                padding: EdgeInsets.symmetric(vertical: 1, horizontal: 0)),
-            SizedBox(
-              width: 390,
-              height: 50,
-              child: ElevatedButton.icon(
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> SettingsPage()));
-                },
-                icon: const IconTheme(
-                  data: IconThemeData(
-                    color: Colors.black,
-                  ),
-                  child: ImageIcon(
-                    AssetImage("assets/images/Settings.png"),
-                  ),
-                ),
-                label: const Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Ayarlar',
-                      style: TextStyle(color: Colors.black54, fontSize: 13),
-                    )),
-              ),
-            ),
-            const Padding(
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 0)),
-            SizedBox(
-              width: 390,
-              height: 47,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
-                onPressed: () {},
-                child: Row(
+                const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 8, horizontal: 0)),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
-                      "Dil",
-                      style: TextStyle(fontSize: 14, color: Colors.black),
-                    ),
-                    const Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 10, horizontal: 132),
-                    ),
-                    DropdownButton(
-                      value: dropDownValLang,
-                      icon: const Icon(Icons.keyboard_arrow_down),
-                      items: listLanguage.map((String list) {
-                        return DropdownMenuItem(
-                          value: list,
-                          child: Text(
-                            list,
-                            style: const TextStyle(
-                                fontSize: 13, color: Colors.black54),
+                    Container(
+                      decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(5.0)),
+    ),
+                      width: 350,
+                      height: 170,
+                      child:Expanded(
+                        child: ElevatedButton(
+                              style:
+                                  ElevatedButton.styleFrom(backgroundColor: Colors.white),
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => showProfileInfo()));
+                              },
+                                child: Column(
+                                  children: [
+                                    IconButton(
+                                      iconSize: 42.0,
+                                        onPressed: (){
+                                          Navigator.push(context, MaterialPageRoute(builder: (context)=> profilePage()));
+                                        },
+                                        icon: const IconTheme(
+                                          data: IconThemeData(
+                                            color: Colors.redAccent,
+                                          ),
+                                          child: Align(
+                                            alignment: Alignment(16.5,0),
+                                            child: ImageIcon(
+                                              AssetImage("assets/images/edit profile.png"),
+                                            ),
+                                          ),
+                                        )
+                                    ),
+                                    Expanded(
+                                      child: FutureBuilder<DocumentSnapshot>(
+                                        future:
+                                            usersCollection.doc(auth.currentUser?.uid).get(),
+                                        builder: (ctx, streamSnapshot) {
+                                          if (!streamSnapshot.hasData) {
+                                            print("Henüz bilgilerinizi girmediniz");
+                                          }
+                                          if (streamSnapshot.connectionState ==
+                                              ConnectionState.done) {
+                                            Map<String, dynamic> data = streamSnapshot.data!
+                                                .data() as Map<String, dynamic>;
+                                            return Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  const Padding(padding: EdgeInsets.all(0)),
+                                                  Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment.center,
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: [
+                                                      Center(
+                                                        child: CircleAvatar(
+                                                          radius: 35,
+                                                          backgroundColor: Colors.red[200],
+                                                          backgroundImage: NetworkImage(
+                                                              data['Profile Foto']),
+                                                          child: Container(
+                                                            decoration: BoxDecoration(
+                                                                borderRadius:
+                                                                    BorderRadius.circular(50)),
+                                                            width: 85,
+                                                            height: 85,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment.center,
+                                                    children: [
+                                                      const Padding(
+                                                          padding:
+                                                              EdgeInsets.fromLTRB(0, 0, 0, 30)),
+                                                      Text(
+                                                        " ${data['Name']} ",
+                                                        style: const TextStyle(
+                                                            fontSize: 14, color: Colors.black),
+                                                      ),
+                                                      const Padding(
+                                                          padding: EdgeInsets.all(15)),
+                                                    ],
+                                                  ),
+                                                ]);
+                                          }
+                                          return const Text('Yükleniyor');
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                      ),
                           ),
-                        );
-                      }).toList(),
-                      onChanged: (String? val) {
-                        setState(() {
-                          dropDownValLang = val!;
-                        });
-                      },
-                    ),
                   ],
                 ),
-              ),
-            ),
-            const Padding(
-                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 0)),
-            SizedBox(
-              width: 390,
-              height: 47,
-              child: Directionality(
-                textDirection: TextDirection.rtl,
-                child: ElevatedButton.icon(
-                  label: Align(
-                      alignment: Alignment.centerLeft,
-                      child: const Text('Çıkış Yap',
-                          style: TextStyle(color: Colors.black))),
-                  style:
-                      ElevatedButton.styleFrom(backgroundColor: Colors.white),
-                  onPressed: () {
-                    signOut();
-                  },
-                  icon: const IconTheme(
-                    data: IconThemeData(
-                      color: Colors.black,
-                    ),
-                    child: Align(
-                      alignment: Alignment.centerRight,
+                const Padding(padding: EdgeInsets.fromLTRB(0, 25, 0, 0)),
+                SizedBox(
+                  width: 390,
+                  height: 50,
+                  child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
+                    onPressed: () {},
+                    icon: const IconTheme(
+                      data: IconThemeData(
+                        color: Colors.black,
+                      ),
                       child: ImageIcon(
-                        AssetImage("assets/images/Vector 334.png"),
+                        AssetImage(
+                          "assets/images/Blood Bag.png",
+                        ),
+                      ),
+                    ),
+                    label: const Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Bağışlarım',
+                        style: TextStyle(
+                          color: Colors.black54,
+                          fontSize: 13,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
+                const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 1, horizontal: 0)),
+                SizedBox(
+                  width: 390,
+                  height: 50,
+                  child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
+                    onPressed: () {},
+                    icon: const IconTheme(
+                      data: IconThemeData(
+                        color: Colors.black,
+                      ),
+                      child: ImageIcon(
+                        AssetImage("assets/images/Megaphone.png"),
+                      ),
+                    ),
+                    label: const Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Bildirim Ayarları',
+                          style: TextStyle(color: Colors.black54, fontSize: 13),
+                        )),
+                  ),
+                ),
+                const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 1, horizontal: 0)),
+                SizedBox(
+                  width: 390,
+                  height: 50,
+                  child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> ProfileDetails()));
+                    },
+                    icon: const IconTheme(
+                      data: IconThemeData(
+                        color: Colors.black,
+                      ),
+                      child: ImageIcon(
+                        AssetImage("assets/images/Group 74.png"),
+                      ),
+                    ),
+                    label: const Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Kan Bağışı Nedir?',
+                          style: TextStyle(color: Colors.black54, fontSize: 13),
+                        )),
+                  ),
+                ),
+                const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 1, horizontal: 0)),
+                SizedBox(
+                  width: 390,
+                  height: 50,
+                  child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
+                    onPressed: () {},
+                    icon: const IconTheme(
+                      data: IconThemeData(
+                        color: Colors.black,
+                      ),
+                      child: ImageIcon(
+                        AssetImage("assets/images/Chat.png"),
+                      ),
+                    ),
+                    label: const Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Bize Ulaşın',
+                          style: TextStyle(color: Colors.black54, fontSize: 13),
+                        )),
+                  ),
+                ),
+                const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 1, horizontal: 0)),
+                SizedBox(
+                  width: 390,
+                  height: 50,
+                  child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> SettingsPage()));
+                    },
+                    icon: const IconTheme(
+                      data: IconThemeData(
+                        color: Colors.black,
+                      ),
+                      child: ImageIcon(
+                        AssetImage("assets/images/Settings.png"),
+                      ),
+                    ),
+                    label: const Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Ayarlar',
+                          style: TextStyle(color: Colors.black54, fontSize: 13),
+                        )),
+                  ),
+                ),
+                const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 0)),
+                SizedBox(
+                  width: 390,
+                  height: 47,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
+                    onPressed: () {},
+                    child: Row(
+                      children: [
+                        const Text(
+                          "Dil",
+                          style: TextStyle(fontSize: 14, color: Colors.black),
+                        ),
+                        const Padding(
+                          padding:
+                              EdgeInsets.symmetric(vertical: 10, horizontal: 100),
+                        ),
+                        DropdownButton(
+                          value: dropDownValLang,
+                          icon: const Icon(Icons.keyboard_arrow_down),
+                          items: listLanguage.map((String list) {
+                            return DropdownMenuItem(
+                              value: list,
+                              child: Text(
+                                list,
+                                style: const TextStyle(
+                                    fontSize: 13, color: Colors.black54),
+                              ),
+                            );
+                          }).toList(),
+                          onChanged: (String? val) {
+                            setState(() {
+                              dropDownValLang = val!;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 0)),
+                SizedBox(
+                  width: 390,
+                  height: 47,
+                  child: Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: ElevatedButton.icon(
+                      label: Align(
+                          alignment: Alignment.centerLeft,
+                          child: const Text('Çıkış Yap',
+                              style: TextStyle(color: Colors.black))),
+                      style:
+                          ElevatedButton.styleFrom(backgroundColor: Colors.white),
+                      onPressed: () {
+                        signOut();
+                      },
+                      icon: const IconTheme(
+                        data: IconThemeData(
+                          color: Colors.black,
+                        ),
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: ImageIcon(
+                            AssetImage("assets/images/Vector 334.png"),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -722,25 +742,33 @@ class _mainProfileState extends State<mainProfile> {
               label: "",
               icon: IconButton(
                 icon: const ImageIcon(
-                  AssetImage("assets/images/UI Menu.png"),
+                  AssetImage(
+                    "assets/images/UI Menu.png",
+                  ),
                 ),
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => SliderMenu()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => MainPage()));
                 },
-              )),
+              )
+          ),
           BottomNavigationBarItem(
             label: "",
             icon: IconButton(
               color: Colors.red.shade900,
-              icon: const ImageIcon(
+              icon:const ImageIcon(
                 AssetImage(
                   "assets/images/Blood Drop.png",
+
                 ),
               ),
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => MainPage()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const SearchBlood()));
               },
             ),
           ),
@@ -749,12 +777,19 @@ class _mainProfileState extends State<mainProfile> {
               icon: IconButton(
                   icon: const ImageIcon(
                     AssetImage("assets/images/Person.png"),
+
                   ),
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => mainProfile()));
-                  })),
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => mainProfile()));
+                  }
+              )
+          ),
+
         ],
+
       ),
     );
   }

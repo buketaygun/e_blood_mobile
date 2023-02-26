@@ -126,20 +126,35 @@ class _SignUpPageState extends State<SignUpPage> {
                             FirebaseFirestore.instance.collection('User').doc(auth.currentUser?.uid).update({"Can Donated":'false'});
                             FirebaseFirestore.instance.collection('User').doc(auth.currentUser?.uid).update({'Profile Foto':'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'});
                             FirebaseFirestore.instance.collection('User').doc(auth.currentUser?.uid).update({"Kan Arama":requestBlood});
-                           /* FirebaseFirestore.instance
-                                .collection('BloodReq')
-                                .doc("Person$authNumber")
-                                .update({
-                              "Name": "-",
-                              "Age": "-",
-                              "Blood Type": "-",
-                              "City": "-",
-                              'Phone Number': "-",
-                              "UnitAmount" : "-",
-                              "Notes": "-",
-                              "Kan Arama": requestBlood,
-                            });*/
-                          });
+    FirebaseFirestore.instance
+        .collection('ReqBloodAge')
+        .doc(auth.currentUser?.uid)
+        .update({
+
+    "-": "-",
+
+    });
+    FirebaseFirestore.instance
+        .collection('ReqBloodCity')
+        .doc(auth.currentUser?.uid)
+        .update({
+    "-": "-"
+    });
+    FirebaseFirestore.instance
+        .collection('ReqBloodName')
+        .doc(auth.currentUser?.uid)
+        .update({
+    "-": "-"
+    });
+    FirebaseFirestore.instance
+        .collection('ReqBloodType')
+        .doc(auth.currentUser?.uid)
+        .update({
+    "-": "-"
+    });
+    Navigator.of(context).pop();
+    },
+                          );
                           Navigator.push(context, MaterialPageRoute(builder:  (context) => MainPage()));
 
                         },

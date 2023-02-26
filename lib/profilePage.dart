@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
+import 'SearchBlood.dart';
 import 'SliderMenu.dart';
 
 class profilePage extends StatefulWidget {
@@ -450,48 +451,61 @@ class _profilePageState extends State<profilePage> {
             ),
           ],
         ),
-    bottomNavigationBar: BottomNavigationBar(
-    items: [
-    BottomNavigationBarItem(
-    label: "",
-    icon: IconButton(
-    icon: ImageIcon(
-    AssetImage("assets/images/UI Menu.png"),
-    ),
-    onPressed: () {
-    Navigator.push(context,
-    MaterialPageRoute(builder: (context) => SliderMenu()));
-    },
-    )),
-    BottomNavigationBarItem(
-    label: "",
-    icon: IconButton(
-    color: Colors.red.shade900,
-    icon: ImageIcon(
-    AssetImage(
-    "assets/images/Blood Drop.png",
-    ),
-    ),
-    onPressed: () {
-    Navigator.push(context,
-    MaterialPageRoute(builder: (context) => MainPage()));
-    },
-    ),
-    ),
-    BottomNavigationBarItem(
-    label: "",
-    icon: IconButton(
-    icon: ImageIcon(
-    AssetImage("assets/images/Person.png"),
-    ),
-    onPressed: () {
-    Navigator.push(
-    context,
-    MaterialPageRoute(
-    builder: (context) => showProfileInfo()));
-    })),
-    ],
-    ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+              label: "",
+              icon: IconButton(
+                icon: const ImageIcon(
+                  AssetImage(
+                    "assets/images/UI Menu.png",
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => MainPage()));
+                },
+              )
+          ),
+          BottomNavigationBarItem(
+            label: "",
+            icon: IconButton(
+              color: Colors.red.shade900,
+              icon:const ImageIcon(
+                AssetImage(
+                  "assets/images/Blood Drop.png",
+
+                ),
+              ),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const SearchBlood()));
+              },
+            ),
+          ),
+          BottomNavigationBarItem(
+              label: "",
+              icon: IconButton(
+                  icon: const ImageIcon(
+                    AssetImage("assets/images/Person.png"),
+
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => mainProfile()));
+                  }
+              )
+          ),
+
+        ],
+
+      ),
     );
     }
 }
