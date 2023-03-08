@@ -183,41 +183,38 @@ class _SearchBloodState extends State<SearchBlood> {
               width: 344,
               height: 47,
               child: ElevatedButton(
-
                 style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.green[400]),
-                  onPressed:(){
+                  onPressed:() async {
                   personSearchBlood++;
                    FirebaseFirestore.instance
                         .collection('ReqBloodAge')
                         .doc(auth.currentUser?.uid)
-                        .update({
-
+                        .set({
                       "Age": age,
-
                     });
                    FirebaseFirestore.instance
                        .collection('ReqBloodCity')
                        .doc(auth.currentUser?.uid)
-                       .update({
+                       .set({
                      "City": city
                    });
                    FirebaseFirestore.instance
                        .collection('ReqBloodName')
                        .doc(auth.currentUser?.uid)
-                       .update({
+                       .set({
                      "Name": name
                    });
                    FirebaseFirestore.instance
                        .collection('ReqBloodType')
                        .doc(auth.currentUser?.uid)
-                       .update({
+                       .set({
                      "Blood Type": bloodType
                    });
                    FirebaseFirestore.instance
                        .collection('ReqBloodUnit')
                        .doc(auth.currentUser?.uid)
-                       .update({
+                       .set({
                      "Unit": unitAmount
                    });
                   FirebaseFirestore.instance

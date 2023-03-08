@@ -5,6 +5,7 @@ import 'package:e_blood/profilePage.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'LoginPage.dart';
 import 'MainPage.dart';
 import 'SearchBlood.dart';
 
@@ -714,8 +715,9 @@ class _mainProfileState extends State<mainProfile> {
                               style: TextStyle(color: Colors.black))),
                       style:
                           ElevatedButton.styleFrom(backgroundColor: Colors.white),
-                      onPressed: () {
+                      onPressed: ()async {
                         signOut();
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> LoginPage()));
                       },
                       icon: const IconTheme(
                         data: IconThemeData(
@@ -794,12 +796,17 @@ class _mainProfileState extends State<mainProfile> {
     );
   }
 
-  signOut() async{
-    var _user=GoogleSignIn().currentUser;
-    if(_user!=null){
-      await GoogleSignIn().disconnect();}
-    await auth.signOut();
-
+  Future<void> signOut() async{
+    var user= GoogleSignIn().onCurrentUserChanged;
+    if(user!=null){
+      await GoogleSignIn().disconnect();
+      await auth.signOut();
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> LoginPage()));
+    }
+    else {
+      await auth.signOut();
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> LoginPage()));
+    }
   }
 
 

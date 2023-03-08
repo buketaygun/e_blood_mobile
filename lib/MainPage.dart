@@ -402,7 +402,7 @@ class _MainPageState extends State<MainPage> {
                                                                              height: 28,
                                                                              child: IconButton(
                                                                                onPressed: () {
-                                                                                 // Navigator.push(context, MaterialPageRoute(builder: (context)=>SettingsPage()));
+
                                                                                },
                                                                                icon: ImageIcon(
                                                                                  AssetImage(

@@ -156,20 +156,20 @@ class _profilePageState extends State<profilePage> {
         builder: (BuildContext bc) {
           return SafeArea(
               child: Container(
-                child: new Wrap(
+                child: Wrap(
                   children: <Widget>[
                     new ListTile(
                       leading: new Icon(Icons.photo_library),
                       title: new Text('Galeri'),
-                      onTap: () {
+                      onTap: () async {
                         imgFromGallery();
                         Navigator.of(context).pop();
                       },
                     ),
-                    new ListTile(
+                    ListTile(
                       leading: new Icon(Icons.photo_camera),
                       title: new Text('Kamera'),
-                      onTap: () {
+                      onTap: () async {
                         imgFromCam();
                         Navigator.of(context).pop();
                       },
